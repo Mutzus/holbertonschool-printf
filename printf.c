@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 
     if (format == NULL)
     {
-        write(STDERR_FILENO, "Error: Format string is NULL\n", 29);
+        write(STDERR_FILENO, "[Anything]\n", 12);
         return -1;
     }
 
