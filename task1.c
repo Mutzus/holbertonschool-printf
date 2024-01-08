@@ -4,9 +4,8 @@
 int _printf(const char *format, ...)
 {
     va_list args;
-    int printed_chars = 0;
-
     va_start(args, format);
+    int printed_chars = 0;
 
     while (*format)
     {
@@ -14,7 +13,7 @@ int _printf(const char *format, ...)
         {
             int value = va_arg(args, int);
             printed_chars += printf("%d", value);
-            format += 2; /* Move to the next format specifier */
+            format += 2; // Move to the next format specifier
         }
         else
         {
