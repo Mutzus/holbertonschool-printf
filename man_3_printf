@@ -1,60 +1,39 @@
-.TH printf 3 "March 2023" "Project Name"
 .SH NAME
-printf \- print formatted output
+printf \- custom printf function
 
 .SH SYNOPSIS
 .B #include <stdio.h>
 .br
 .B #include <stdarg.h>
 .br
+.B #include <unistd.h>
+.br
 .I int _printf(const char *format, ...);
 
 .SH DESCRIPTION
-The \fIprintf\fP function writes formatted output to stdout. The function 
-\fI_printf\fP is a simplified version of the standard C library \fIprintf\fP.
-It supports the following conversion specifiers:
-.TP
-\fB%c\fP
-Prints a character.
-.TP
-\fB%s\fP
-Prints a string.
-.TP
-\fB%%\fP
-Prints a percent sign.
+The \fB_printf\fR function is a custom implementation of the printf function in C. It produces output according to a format string.
+
+.PP
+The format string can include conversion specifiers such as %c (character), %s (string), and %% (percent).
 
 .SH RETURN VALUE
-The \fI_printf\fP function returns the number of characters printed
-(excluding the null byte used to end output to strings).
+The function returns the number of characters printed (excluding the null byte used to end output to strings).
+
+.SH ERRORS
+If the format string is NULL, an error message is printed to the standard error stream, and the function returns -1.
 
 .SH EXAMPLES
-The following example demonstrates the use of \fI_printf\fP:
-.PP
-\fB#include <stdio.h>\fP
-.br
-\fB#include "your_header_file.h"\fP
-.br
-\fBint main(void) {\fP
-.br
-\fI    _printf("Hello, %s!\n", "world");\fP
-.br
-\fB    return (0);\fP
-.br
-\fB}\fP
+Print a character:
+.B _printf("%c", 'A');
+
+Print a string:
+.B _printf("%s", "Hello, World!");
+
+Print a percent sign:
+.B _printf("100%%");
 
 .SH SEE ALSO
-.BR printf(1),
-.BR fprintf(3),
-.BR va_start(3),
-.BR va_end(3).
+.BR printf
 
 .SH AUTHOR
-Your Name
-
-.SH BUGS
-No known bugs.
-
-.SH COPYRIGHT
-Copyright (C) Year Your Name.
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
+Written by Mutzus
