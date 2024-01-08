@@ -10,15 +10,15 @@
  */
 int _printf(const char *format, ...)
 {
+	va_list args;
+	int count = 0;
+	char *str;
+
     if (format == NULL)
     {
         write(STDERR_FILENO, "Error: Format string is NULL\n", 29);
         return -1;
     }
-
-    va_list args;
-    int count = 0;
-    char *str;
 
     va_start(args, format);
 
