@@ -16,12 +16,14 @@ int _putchar(char c)
  * _puts - Writes a string to stdout
  * @str: The string to print
  *
- * Return: On success, the number of characters written. On error, -1 is returned.
+ * Return: On success, the number of characters written.
+ * On error, -1 is returned.
  */
 
 int _puts(char *str)
 {
 	int count = 0;
+
 	while (*str)
 	{
 		if (_putchar(*str) == -1)
