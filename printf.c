@@ -20,9 +20,7 @@ int _printf(const char *format, ...)
 		write(STDERR_FILENO, "[Anything]", 0);
 		return (-1);
 	}
-
 	va_start(args, format);
-
 	while (*format)
 	{
 		if (*format == '%' && *(format + 1) != '\0')
