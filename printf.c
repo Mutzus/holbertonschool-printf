@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 
     if (format == NULL)
     {
-        write(STDERR_FILENO, "[Anything]\n", 12);
+        write(STDERR_FILENO, "[Anything]", 0);
         return -1;
     }
 
