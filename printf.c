@@ -1,36 +1,55 @@
-#include <stdarg.h>
 #include <stdio.h>
+#include <stdarg.h>
+#include "main.h"
 
+/**
+ * _printf - Custom printf function
+ * @format: Format string
+ *
+ * Return: Number of characters printed (excluding null byte)
+ */
 int _printf(const char *format, ...)
 {
     va_list args;
-    int printed_chars = 0;
+    int count = 0;
+    const char *ptr;
+    char *str;
 
     va_start(args, format);
 
-    while (*format)
+    for (ptr = format; *ptr != '\0'; ptr++)
     {
-        if (*format == '%' && (*(format + 1) == 'd' || *(format + 1) == 'i'))
+        if (*ptr == '%' && *(ptr + 1) != '\0')
         {
-            int value = va_arg(args, int);
-            printed_chars += printf("%d", value);
-            format += 2; /* Move to the next format specifier */
+            switch (*(ptr + 1))
+            {
+            case 'c':
+                count += _putchar(va_arg(args, int));
+                ptr++; /* Skip 'c' */
+                break;
+            case 's':
+                str = va_arg(args, char *);
+                if (str == NULL)
+                    str = "(nil)";
+                count += _puts(str);
+                ptr++; /* Skip 's' */
+                break;
+            case '%':
+                count += _putchar('%');
+                ptr++; /* Skip '%' */
+                break;
+            default:
+                count += _putchar(*ptr);
+                break;
+            }
         }
         else
         {
-            putchar(*format);
-            printed_chars++;
-            format++;
+            count += _putchar(*ptr);
         }
     }
 
     va_end(args);
-    return printed_chars;
-}
 
-int main(void)
-{
-    _printf("Value: %d, %i\n", 42, -123);
-
-    return 0;
+    return count;
 }
